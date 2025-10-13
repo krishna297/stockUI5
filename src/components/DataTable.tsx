@@ -1,5 +1,5 @@
-import { ArrowUpDown, ArrowUp, ArrowDown, ChevronLeft, ChevronRight, Star, Search } from 'lucide-react';
-import { useState, useMemo } from 'react';
+import { ArrowUpDown, ArrowUp, ArrowDown, ChevronLeft, ChevronRight, Star, Search, X } from 'lucide-react';
+import { useState, useMemo, useEffect } from 'react';
 import { StockData } from '../types';
 
 interface DataTableProps {
@@ -17,6 +17,8 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
   const [sortDirection, setSortDirection] = useState<SortDirection>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTicker, setSearchTicker] = useState('');
+  const [selectedDates, setSelectedDates] = useState<string[]>([]);
+  const [showDateDropdown, setShowDateDropdown] = useState(false);
   const itemsPerPage = 20;
 
   const handleSort = (field: SortField) => {
@@ -40,6 +42,15 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
     return ['All', ...Array.from(types).sort()];
   }, [data]);
 
+  const uniqueDates = useMemo(() => {
+    const dates = new Set(data.map((item) => item.date));
+    return Array.from(dates).sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
+  }, [data]);
+
+  useEffect(() => {
+    setSelectedDates([]);
+  }, []);
+
   const filteredData = useMemo(() => {
     let filtered = data;
 
@@ -53,8 +64,12 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
       );
     }
 
+    if (selectedDates.length > 0) {
+      filtered = filtered.filter((item) => selectedDates.includes(item.date));
+    }
+
     return filtered;
-  }, [data, selectedSignalType, searchTicker]);
+  }, [data, selectedSignalType, searchTicker, selectedDates]);
 
   const sortedData = useMemo(() => {
     let dataToSort = filteredData;
@@ -100,7 +115,7 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
 
   useMemo(() => {
     setCurrentPage(1);
-  }, [selectedSignalType, sortField, sortDirection, searchTicker]);
+  }, [selectedSignalType, sortField, sortDirection, searchTicker, selectedDates]);
 
   const getSortIcon = (field: SortField) => {
     if (sortField !== field) {
@@ -123,10 +138,24 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
     onTogglePick(row);
   };
 
+  const handleDateToggle = (date: string) => {
+    setSelectedDates((prev) => {
+      if (prev.includes(date)) {
+        return prev.filter((d) => d !== date);
+      } else {
+        return [...prev, date];
+      }
+    });
+  };
+
+  const handleClearDates = () => {
+    setSelectedDates([]);
+  };
+
   return (
     <div className="space-y-4">
       <div className="bg-white rounded-lg shadow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label htmlFor="searchTicker" className="block text-sm font-medium text-slate-700 mb-2">
               Search Ticker
@@ -159,6 +188,52 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
                 </option>
               ))}
             </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-2">
+              Filter by Date
+            </label>
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setShowDateDropdown(!showDateDropdown)}
+                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-left bg-white"
+              >
+                {selectedDates.length === 0 ? (
+                  <span className="text-slate-500">Select dates...</span>
+                ) : (
+                  <span className="text-slate-900">{selectedDates.length} date{selectedDates.length !== 1 ? 's' : ''} selected</span>
+                )}
+              </button>
+              {selectedDates.length > 0 && (
+                <button
+                  type="button"
+                  onClick={handleClearDates}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 hover:bg-slate-100 rounded transition-colors"
+                  title="Clear dates"
+                >
+                  <X className="w-4 h-4 text-slate-400" />
+                </button>
+              )}
+              {showDateDropdown && (
+                <div className="absolute z-10 mt-1 w-full bg-white border border-slate-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                  {uniqueDates.map((date) => (
+                    <label
+                      key={date}
+                      className="flex items-center px-4 py-2 hover:bg-slate-50 cursor-pointer transition-colors"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedDates.includes(date)}
+                        onChange={() => handleDateToggle(date)}
+                        className="mr-3 w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-2 focus:ring-blue-500"
+                      />
+                      <span className="text-sm text-slate-700">{date}</span>
+                    </label>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

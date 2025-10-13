@@ -153,6 +153,8 @@ function App() {
 
       if (error) {
         console.error('Error removing picked stock:', error);
+      } else {
+        await loadPickedStocks();
       }
     } else {
       const { error } = await supabase.from('picked_stocks').insert([
@@ -167,6 +169,8 @@ function App() {
 
       if (error) {
         console.error('Error adding picked stock:', error);
+      } else {
+        await loadPickedStocks();
       }
     }
   };
@@ -179,6 +183,8 @@ function App() {
 
     if (error) {
       console.error('Error removing picked stock:', error);
+    } else {
+      await loadPickedStocks();
     }
   };
 

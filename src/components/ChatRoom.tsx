@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Send, MessageCircle } from 'lucide-react';
+import { Send, MessageCircle, Trash2 } from 'lucide-react';
 import { ChatMessage } from '../types';
 import { supabase } from '../lib/supabase';
 
@@ -77,6 +77,26 @@ export function ChatRoom() {
       console.error('Error sending message:', error);
     } else {
       setNewMessage('');
+      await loadMessages();
+    }
+    setLoading(false);
+  };
+
+  const handleDeleteHistory = async () => {
+    if (!confirm('Are you sure you want to delete all chat history? This action cannot be undone.')) {
+      return;
+    }
+
+    setLoading(true);
+    const { error } = await supabase
+      .from('chat_messages')
+      .delete()
+      .neq('id', '00000000-0000-0000-0000-000000000000');
+
+    if (error) {
+      console.error('Error deleting chat history:', error);
+    } else {
+      setMessages([]);
     }
     setLoading(false);
   };
@@ -100,12 +120,22 @@ export function ChatRoom() {
           <MessageCircle className="w-5 h-5 text-blue-400" />
           <h3 className="font-semibold text-slate-100">Chat Room</h3>
         </div>
-        <button
-          onClick={() => setIsOpen(false)}
-          className="text-slate-400 hover:text-slate-200 transition-colors"
-        >
-          ✕
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleDeleteHistory}
+            disabled={loading || messages.length === 0}
+            className="p-2 text-slate-400 hover:text-red-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            title="Delete chat history"
+          >
+            <Trash2 className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => setIsOpen(false)}
+            className="text-slate-400 hover:text-slate-200 transition-colors"
+          >
+            ✕
+          </button>
+        </div>
       </div>
 
       <div className="p-4 border-b border-slate-700">
