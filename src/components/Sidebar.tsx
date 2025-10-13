@@ -90,7 +90,7 @@ export function Sidebar({ directories, onFileSelect, onAllDataSelect, selectedFi
   };
 
   return (
-    <div className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-slate-800 text-slate-100 h-screen overflow-y-auto flex flex-col transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+    <div className={`fixed inset-y-0 left-0 z-40 w-64 bg-slate-800 text-slate-100 h-screen overflow-y-auto flex flex-col transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
       <div className="p-4 border-b border-slate-700">
         <h2 className="text-lg font-semibold flex items-center gap-2">
           <Folder className="w-5 h-5" />

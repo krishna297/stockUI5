@@ -199,6 +199,7 @@ function App() {
   }));
 
   const handleRefresh = async () => {
+    setSelectedSignalType('All');
     await loadDirectories();
     loadData();
   };
@@ -207,7 +208,7 @@ function App() {
     <div className="flex h-screen bg-slate-100">
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-30"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -228,7 +229,7 @@ function App() {
           <div className="px-4 md:px-6 py-4 flex items-center justify-between">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors mr-2"
+              className="p-2 rounded-lg hover:bg-slate-100 transition-colors mr-2"
             >
               <Menu className="w-6 h-6 text-slate-600" />
             </button>
@@ -285,6 +286,8 @@ function App() {
                 selectedSignalType={selectedSignalType}
                 onSignalTypeChange={setSelectedSignalType}
                 onTogglePick={handleTogglePick}
+                isViewingMasterData={!selectedFile}
+                onRefresh={handleRefresh}
               />
             )
           )}

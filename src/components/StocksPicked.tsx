@@ -6,11 +6,12 @@ import { supabase } from '../lib/supabase';
 interface StocksPickedProps {
   pickedStocks: PickedStock[];
   onRemoveStock: (stockId: string) => void;
+  onPriorityUpdate?: () => void;
 }
 
 type SortBy = 'date' | 'priority';
 
-export function StocksPicked({ pickedStocks, onRemoveStock }: StocksPickedProps) {
+export function StocksPicked({ pickedStocks, onRemoveStock, onPriorityUpdate }: StocksPickedProps) {
   const [sortBy, setSortBy] = useState<SortBy>('date');
 
   const handlePriorityChange = async (stockId: string, newPriority: 'high' | 'moderate' | 'low') => {
@@ -148,11 +149,11 @@ export function StocksPicked({ pickedStocks, onRemoveStock }: StocksPickedProps)
                     <span className="text-sm text-slate-600">Date</span>
                     <span className="text-sm text-slate-700">{stock.date}</span>
                   </div>
-                  {stock.source_file && (
-                    <div className="pt-2 border-t border-slate-200">
-                      <span className="text-xs text-slate-500">{stock.source_file}</span>
-                    </div>
-                  )}
+                  <div className="pt-2 border-t border-slate-200">
+                    <span className="text-xs text-slate-500">
+                      {stock.source_file || 'No source'}
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}

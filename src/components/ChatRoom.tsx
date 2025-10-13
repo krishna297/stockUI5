@@ -114,7 +114,7 @@ export function ChatRoom() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 w-[calc(100vw-2rem)] sm:w-96 sm:max-w-96 h-[calc(100vh-2rem)] sm:h-[600px] sm:max-h-[600px] bg-slate-800 rounded-lg shadow-2xl flex flex-col z-50 border border-slate-700">
+    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 w-[calc(100vw-2rem)] sm:w-96 h-[calc(100vh-2rem)] sm:h-[min(600px,calc(100vh-8rem))] bg-slate-800 rounded-lg shadow-2xl flex flex-col z-50 border border-slate-700 resize-y overflow-auto">
       <div className="flex items-center justify-between p-4 border-b border-slate-700">
         <div className="flex items-center gap-2">
           <MessageCircle className="w-5 h-5 text-blue-400" />

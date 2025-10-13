@@ -7,12 +7,14 @@ interface DataTableProps {
   selectedSignalType: string;
   onSignalTypeChange: (signalType: string) => void;
   onTogglePick: (stock: StockData) => void;
+  isViewingMasterData: boolean;
+  onRefresh?: () => void;
 }
 
 type SortField = keyof StockData;
 type SortDirection = 'asc' | 'desc' | null;
 
-export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogglePick }: DataTableProps) {
+export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogglePick, isViewingMasterData, onRefresh }: DataTableProps) {
   const [sortField, setSortField] = useState<SortField | null>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -169,10 +171,20 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
     setSelectedDates([]);
   };
 
+  useEffect(() => {
+    if (onRefresh) {
+      setSortField(null);
+      setSortDirection(null);
+      setSearchTicker('');
+      setSelectedDates([]);
+      setCurrentPage(1);
+    }
+  }, [data]);
+
   return (
     <div className="space-y-4">
       <div className="bg-white rounded-lg shadow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className={`grid grid-cols-1 gap-4 ${isViewingMasterData ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
           <div>
             <label htmlFor="searchTicker" className="block text-sm font-medium text-slate-700 mb-2">
               Search Ticker
@@ -206,55 +218,57 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
               ))}
             </select>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">
-              Filter by Date
-            </label>
-            <div className="relative" ref={dateDropdownRef}>
-              <button
-                type="button"
-                onClick={() => setShowDateDropdown(!showDateDropdown)}
-                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-left bg-white"
-              >
-                {selectedDates.length === 0 ? (
-                  <span className="text-slate-500">Select dates...</span>
-                ) : (
-                  <span className="text-slate-900">{selectedDates.length} date{selectedDates.length !== 1 ? 's' : ''} selected</span>
-                )}
-              </button>
-              {selectedDates.length > 0 && (
+          {isViewingMasterData && (
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Filter by Date
+              </label>
+              <div className="relative" ref={dateDropdownRef}>
                 <button
                   type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleClearDates();
-                  }}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 hover:bg-slate-100 rounded transition-colors z-10"
-                  title="Clear dates"
+                  onClick={() => setShowDateDropdown(!showDateDropdown)}
+                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-left bg-white"
                 >
-                  <X className="w-4 h-4 text-slate-400" />
+                  {selectedDates.length === 0 ? (
+                    <span className="text-slate-500">Select dates...</span>
+                  ) : (
+                    <span className="text-slate-900">{selectedDates.length} date{selectedDates.length !== 1 ? 's' : ''} selected</span>
+                  )}
                 </button>
-              )}
-              {showDateDropdown && (
-                <div className="absolute z-10 mt-1 w-full bg-white border border-slate-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
-                  {uniqueDates.map((date) => (
-                    <label
-                      key={date}
-                      className="flex items-center px-4 py-2 hover:bg-slate-50 cursor-pointer transition-colors"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={selectedDates.includes(date)}
-                        onChange={() => handleDateToggle(date)}
-                        className="mr-3 w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-2 focus:ring-blue-500"
-                      />
-                      <span className="text-sm text-slate-700">{date}</span>
-                    </label>
-                  ))}
-                </div>
-              )}
+                {selectedDates.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleClearDates();
+                    }}
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 hover:bg-slate-100 rounded transition-colors z-10"
+                    title="Clear dates"
+                  >
+                    <X className="w-4 h-4 text-slate-400" />
+                  </button>
+                )}
+                {showDateDropdown && (
+                  <div className="absolute z-10 mt-1 w-full bg-white border border-slate-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                    {uniqueDates.map((date) => (
+                      <label
+                        key={date}
+                        className="flex items-center px-4 py-2 hover:bg-slate-50 cursor-pointer transition-colors"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedDates.includes(date)}
+                          onChange={() => handleDateToggle(date)}
+                          className="mr-3 w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-2 focus:ring-blue-500"
+                        />
+                        <span className="text-sm text-slate-700">{date}</span>
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
