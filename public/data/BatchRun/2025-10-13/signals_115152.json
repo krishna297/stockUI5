@@ -1,0 +1,194 @@
+[
+    {
+        "tickerName": "VSEE",
+        "signalType": "StrongSell",
+        "stockPrice": "0.65",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "VSEE",
+        "signalType": "Agg-Sell",
+        "stockPrice": "0.65",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "BMGL",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.54",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "MYNZ",
+        "signalType": "StrongBuy",
+        "stockPrice": "1.61",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "MYNZ",
+        "signalType": "Agg-Buy",
+        "stockPrice": "1.61",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "ZNTL",
+        "signalType": "StrongSell",
+        "stockPrice": "1.63",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "ZNTL",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.63",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "DVS",
+        "signalType": "StrongBuy",
+        "stockPrice": "4.75",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "DVS",
+        "signalType": "Agg-Buy",
+        "stockPrice": "4.75",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "NEO",
+        "signalType": "StrongBuy",
+        "stockPrice": "9.33",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "NEO",
+        "signalType": "Agg-Buy",
+        "stockPrice": "9.33",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "UTZ",
+        "signalType": "StrongSell",
+        "stockPrice": "12.01",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "UTZ",
+        "signalType": "Agg-Sell",
+        "stockPrice": "12.01",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "LUNR",
+        "signalType": "StrongSell",
+        "stockPrice": "12.30",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "LUNR",
+        "signalType": "Agg-Sell",
+        "stockPrice": "12.30",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "FBYD",
+        "signalType": "StrongBuy",
+        "stockPrice": "13.00",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "FBYD",
+        "signalType": "Agg-Buy",
+        "stockPrice": "13.00",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "OFIX",
+        "signalType": "Agg-Buy",
+        "stockPrice": "14.57",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "FLNC",
+        "signalType": "StrongBuy",
+        "stockPrice": "15.94",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "FLNC",
+        "signalType": "Agg-Buy",
+        "stockPrice": "15.94",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "RZB",
+        "signalType": "Agg-Buy",
+        "stockPrice": "25.04",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "ELVR",
+        "signalType": "StrongBuy",
+        "stockPrice": "27.45",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "ELVR",
+        "signalType": "Agg-Buy",
+        "stockPrice": "27.45",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "PAAS",
+        "signalType": "Agg-Buy",
+        "stockPrice": "40.85",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "IPX",
+        "signalType": "StrongBuy",
+        "stockPrice": "55.89",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "IPX",
+        "signalType": "Agg-Buy",
+        "stockPrice": "55.89",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "LLYVK",
+        "signalType": "Agg-Buy",
+        "stockPrice": "89.83",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "AEM",
+        "signalType": "StrongBuy",
+        "stockPrice": "170.63",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "AEM",
+        "signalType": "Agg-Buy",
+        "stockPrice": "170.63",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "SBAC",
+        "signalType": "Agg-Sell",
+        "stockPrice": "186.26",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "JPM",
+        "signalType": "StrongBuy",
+        "stockPrice": "308.02",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "JPM",
+        "signalType": "Agg-Buy",
+        "stockPrice": "308.02",
+        "date": "2025-10-13"
+    }
+]

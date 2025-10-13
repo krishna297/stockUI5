@@ -1,0 +1,656 @@
+[
+    {
+        "tickerName": "SCAGW",
+        "signalType": "StrongSell",
+        "stockPrice": "0.05",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "SCAGW",
+        "signalType": "Agg-Sell",
+        "stockPrice": "0.05",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "GNPX",
+        "signalType": "StrongSell",
+        "stockPrice": "0.21",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "GNPX",
+        "signalType": "Agg-Sell",
+        "stockPrice": "0.21",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ADIL",
+        "signalType": "StrongSell",
+        "stockPrice": "0.38",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ADIL",
+        "signalType": "Agg-Sell",
+        "stockPrice": "0.38",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "KUKE",
+        "signalType": "Agg-Sell",
+        "stockPrice": "0.56",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "PGYWW",
+        "signalType": "Agg-Buy",
+        "stockPrice": "0.59",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "RVPH",
+        "signalType": "StrongSell",
+        "stockPrice": "0.66",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "RVPH",
+        "signalType": "Agg-Sell",
+        "stockPrice": "0.66",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "SGMO",
+        "signalType": "StrongSell",
+        "stockPrice": "0.67",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "SGMO",
+        "signalType": "Agg-Sell",
+        "stockPrice": "0.67",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ABLV",
+        "signalType": "StrongSell",
+        "stockPrice": "0.92",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ABLV",
+        "signalType": "Agg-Sell",
+        "stockPrice": "0.92",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "MYSZ",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.21",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "TOP",
+        "signalType": "StrongSell",
+        "stockPrice": "1.28",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "TOP",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.28",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "DXST",
+        "signalType": "StrongSell",
+        "stockPrice": "1.31",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "DXST",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.31",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ZEO",
+        "signalType": "StrongSell",
+        "stockPrice": "1.31",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ZEO",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.31",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "PLRX",
+        "signalType": "StrongSell",
+        "stockPrice": "1.46",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "PLRX",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.46",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "EVTV",
+        "signalType": "StrongSell",
+        "stockPrice": "1.50",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "EVTV",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.50",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "SBFM",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.58",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "TELO",
+        "signalType": "StrongSell",
+        "stockPrice": "1.64",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "TELO",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.64",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "OABI",
+        "signalType": "StrongSell",
+        "stockPrice": "1.64",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "OABI",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.64",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "BYSI",
+        "signalType": "StrongSell",
+        "stockPrice": "1.76",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "BYSI",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.76",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "FNGR",
+        "signalType": "StrongSell",
+        "stockPrice": "1.79",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "FNGR",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.79",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "WALD",
+        "signalType": "StrongSell",
+        "stockPrice": "1.94",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "WALD",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.94",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ORKT",
+        "signalType": "StrongSell",
+        "stockPrice": "2.09",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ORKT",
+        "signalType": "Agg-Sell",
+        "stockPrice": "2.09",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ORMP",
+        "signalType": "StrongBuy",
+        "stockPrice": "2.44",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ORMP",
+        "signalType": "Agg-Buy",
+        "stockPrice": "2.44",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "BIAF",
+        "signalType": "StrongSell",
+        "stockPrice": "2.76",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "BIAF",
+        "signalType": "Agg-Sell",
+        "stockPrice": "2.76",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ELWS",
+        "signalType": "StrongSell",
+        "stockPrice": "2.94",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ELWS",
+        "signalType": "Agg-Sell",
+        "stockPrice": "2.94",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "INDO",
+        "signalType": "Agg-Sell",
+        "stockPrice": "2.94",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "GRCE",
+        "signalType": "Agg-Sell",
+        "stockPrice": "2.99",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "AIRI",
+        "signalType": "StrongSell",
+        "stockPrice": "3.15",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "AIRI",
+        "signalType": "Agg-Sell",
+        "stockPrice": "3.15",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "NEON",
+        "signalType": "Agg-Sell",
+        "stockPrice": "3.60",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "CING",
+        "signalType": "Agg-Sell",
+        "stockPrice": "4.06",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "APT",
+        "signalType": "Agg-Sell",
+        "stockPrice": "4.72",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "CNCK",
+        "signalType": "StrongSell",
+        "stockPrice": "4.85",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "CNCK",
+        "signalType": "Agg-Sell",
+        "stockPrice": "4.85",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "KULR",
+        "signalType": "StrongSell",
+        "stockPrice": "4.97",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "KULR",
+        "signalType": "Agg-Sell",
+        "stockPrice": "4.97",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "NEOG",
+        "signalType": "StrongSell",
+        "stockPrice": "5.91",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "NEOG",
+        "signalType": "Agg-Sell",
+        "stockPrice": "5.91",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "TRDA",
+        "signalType": "StrongSell",
+        "stockPrice": "6.18",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "TRDA",
+        "signalType": "Agg-Sell",
+        "stockPrice": "6.18",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "UPC",
+        "signalType": "StrongSell",
+        "stockPrice": "6.49",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "UPC",
+        "signalType": "Agg-Sell",
+        "stockPrice": "6.49",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "PCM",
+        "signalType": "Agg-Sell",
+        "stockPrice": "6.66",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "JG",
+        "signalType": "Agg-Sell",
+        "stockPrice": "8.47",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "CMBT",
+        "signalType": "StrongSell",
+        "stockPrice": "9.02",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "CMBT",
+        "signalType": "Agg-Sell",
+        "stockPrice": "9.02",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "CMBT",
+        "signalType": "Agg-Buy",
+        "stockPrice": "9.13",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "RAIL",
+        "signalType": "StrongSell",
+        "stockPrice": "9.53",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "RAIL",
+        "signalType": "Agg-Sell",
+        "stockPrice": "9.53",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "NCTY",
+        "signalType": "Agg-Sell",
+        "stockPrice": "10.25",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "CCU",
+        "signalType": "Agg-Sell",
+        "stockPrice": "11.53",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "SEM",
+        "signalType": "StrongSell",
+        "stockPrice": "13.36",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "SEM",
+        "signalType": "Agg-Sell",
+        "stockPrice": "13.36",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "LCNB",
+        "signalType": "StrongSell",
+        "stockPrice": "14.64",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "LCNB",
+        "signalType": "Agg-Sell",
+        "stockPrice": "14.64",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "GNE",
+        "signalType": "Agg-Sell",
+        "stockPrice": "15.34",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "SPOK",
+        "signalType": "StrongSell",
+        "stockPrice": "15.86",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "SPOK",
+        "signalType": "Agg-Sell",
+        "stockPrice": "15.86",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "MAT",
+        "signalType": "Agg-Sell",
+        "stockPrice": "17.50",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "TLK",
+        "signalType": "StrongBuy",
+        "stockPrice": "18.42",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "TLK",
+        "signalType": "Agg-Buy",
+        "stockPrice": "18.42",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ADAMZ",
+        "signalType": "Agg-Sell",
+        "stockPrice": "19.31",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ADAMZ",
+        "signalType": "StrongBuy",
+        "stockPrice": "20.08",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ADAMZ",
+        "signalType": "Agg-Buy",
+        "stockPrice": "20.08",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "WSC",
+        "signalType": "StrongSell",
+        "stockPrice": "21.68",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "WSC",
+        "signalType": "Agg-Sell",
+        "stockPrice": "21.68",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "KRT",
+        "signalType": "StrongSell",
+        "stockPrice": "23.26",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "KRT",
+        "signalType": "Agg-Sell",
+        "stockPrice": "23.26",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "BBT",
+        "signalType": "StrongSell",
+        "stockPrice": "23.83",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "BBT",
+        "signalType": "Agg-Sell",
+        "stockPrice": "23.83",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ELMD",
+        "signalType": "StrongSell",
+        "stockPrice": "24.66",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ELMD",
+        "signalType": "Agg-Sell",
+        "stockPrice": "24.66",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "ONBPO",
+        "signalType": "Agg-Sell",
+        "stockPrice": "25.05",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "SAZ",
+        "signalType": "Agg-Sell",
+        "stockPrice": "25.27",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "SMTI",
+        "signalType": "StrongSell",
+        "stockPrice": "31.02",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "SMTI",
+        "signalType": "Agg-Sell",
+        "stockPrice": "31.02",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "HUBG",
+        "signalType": "StrongSell",
+        "stockPrice": "33.93",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "HUBG",
+        "signalType": "Agg-Sell",
+        "stockPrice": "33.93",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "KGS",
+        "signalType": "StrongSell",
+        "stockPrice": "34.49",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "KGS",
+        "signalType": "Agg-Sell",
+        "stockPrice": "34.49",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "KNX",
+        "signalType": "StrongSell",
+        "stockPrice": "42.35",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "KNX",
+        "signalType": "Agg-Sell",
+        "stockPrice": "42.35",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "TR",
+        "signalType": "StrongBuy",
+        "stockPrice": "43.04",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "TR",
+        "signalType": "Agg-Buy",
+        "stockPrice": "43.04",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "CTSH",
+        "signalType": "Agg-Sell",
+        "stockPrice": "66.47",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "HQY",
+        "signalType": "StrongSell",
+        "stockPrice": "90.54",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "HQY",
+        "signalType": "Agg-Sell",
+        "stockPrice": "90.54",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "UNH",
+        "signalType": "Agg-Sell",
+        "stockPrice": "357.41",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "VRTX",
+        "signalType": "StrongSell",
+        "stockPrice": "408.61",
+        "date": "2025-10-10"
+    },
+    {
+        "tickerName": "VRTX",
+        "signalType": "Agg-Sell",
+        "stockPrice": "408.61",
+        "date": "2025-10-10"
+    }
+]

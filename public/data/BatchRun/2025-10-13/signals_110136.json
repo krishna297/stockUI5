@@ -1,0 +1,110 @@
+[
+    {
+        "tickerName": "INVZW",
+        "signalType": "StrongSell",
+        "stockPrice": "0.07",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "INVZW",
+        "signalType": "Agg-Sell",
+        "stockPrice": "0.07",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "TNMG",
+        "signalType": "StrongSell",
+        "stockPrice": "0.41",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "TNMG",
+        "signalType": "Agg-Sell",
+        "stockPrice": "0.41",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "TBH",
+        "signalType": "Agg-Sell",
+        "stockPrice": "0.96",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "PROK",
+        "signalType": "Agg-Sell",
+        "stockPrice": "2.90",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "ITRG",
+        "signalType": "StrongBuy",
+        "stockPrice": "3.21",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "ITRG",
+        "signalType": "Agg-Buy",
+        "stockPrice": "3.21",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "MOGU",
+        "signalType": "StrongSell",
+        "stockPrice": "3.22",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "MOGU",
+        "signalType": "Agg-Sell",
+        "stockPrice": "3.22",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "HR",
+        "signalType": "StrongBuy",
+        "stockPrice": "17.85",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "HR",
+        "signalType": "Agg-Buy",
+        "stockPrice": "17.85",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "SA",
+        "signalType": "Agg-Buy",
+        "stockPrice": "25.99",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "GFI",
+        "signalType": "StrongBuy",
+        "stockPrice": "42.92",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "GFI",
+        "signalType": "Agg-Buy",
+        "stockPrice": "42.92",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "SYM",
+        "signalType": "StrongBuy",
+        "stockPrice": "68.68",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "SYM",
+        "signalType": "Agg-Buy",
+        "stockPrice": "68.68",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "AGX",
+        "signalType": "Agg-Buy",
+        "stockPrice": "287.72",
+        "date": "2025-10-13"
+    }
+]

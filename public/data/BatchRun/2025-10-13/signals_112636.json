@@ -1,0 +1,104 @@
+[
+    {
+        "tickerName": "JXG",
+        "signalType": "StrongSell",
+        "stockPrice": "0.85",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "JXG",
+        "signalType": "Agg-Sell",
+        "stockPrice": "0.85",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "BRN",
+        "signalType": "StrongSell",
+        "stockPrice": "1.30",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "BRN",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.30",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "CURR",
+        "signalType": "StrongSell",
+        "stockPrice": "1.69",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "CURR",
+        "signalType": "Agg-Sell",
+        "stockPrice": "1.69",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "ZDGE",
+        "signalType": "Agg-Buy",
+        "stockPrice": "3.30",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "MTEX",
+        "signalType": "Agg-Buy",
+        "stockPrice": "10.25",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "AVO",
+        "signalType": "StrongSell",
+        "stockPrice": "11.66",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "AVO",
+        "signalType": "Agg-Sell",
+        "stockPrice": "11.66",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "COLD",
+        "signalType": "Agg-Sell",
+        "stockPrice": "13.15",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "INMD",
+        "signalType": "StrongSell",
+        "stockPrice": "15.18",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "INMD",
+        "signalType": "Agg-Sell",
+        "stockPrice": "15.18",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "EOSE",
+        "signalType": "Agg-Buy",
+        "stockPrice": "15.92",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "UCIB",
+        "signalType": "Agg-Sell",
+        "stockPrice": "26.80",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "NEM",
+        "signalType": "StrongBuy",
+        "stockPrice": "88.93",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "NEM",
+        "signalType": "Agg-Buy",
+        "stockPrice": "88.93",
+        "date": "2025-10-13"
+    }
+]

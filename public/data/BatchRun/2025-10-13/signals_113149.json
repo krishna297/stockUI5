@@ -1,0 +1,116 @@
+[
+    {
+        "tickerName": "WTI",
+        "signalType": "Agg-Buy",
+        "stockPrice": "2.49",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "NTRP",
+        "signalType": "Agg-Sell",
+        "stockPrice": "3.19",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "CTMX",
+        "signalType": "StrongBuy",
+        "stockPrice": "3.34",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "CTMX",
+        "signalType": "Agg-Buy",
+        "stockPrice": "3.34",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "SLRX",
+        "signalType": "StrongSell",
+        "stockPrice": "3.96",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "SLRX",
+        "signalType": "Agg-Sell",
+        "stockPrice": "3.96",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "EOSEW",
+        "signalType": "Agg-Buy",
+        "stockPrice": "4.69",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "CHECU",
+        "signalType": "StrongSell",
+        "stockPrice": "9.96",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "CHECU",
+        "signalType": "Agg-Sell",
+        "stockPrice": "9.96",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "NRK",
+        "signalType": "Agg-Buy",
+        "stockPrice": "10.16",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "NMCO",
+        "signalType": "StrongBuy",
+        "stockPrice": "10.86",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "NMCO",
+        "signalType": "Agg-Buy",
+        "stockPrice": "10.86",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "JHX",
+        "signalType": "Agg-Sell",
+        "stockPrice": "21.52",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "HWCPZ",
+        "signalType": "StrongBuy",
+        "stockPrice": "24.48",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "HWCPZ",
+        "signalType": "Agg-Buy",
+        "stockPrice": "24.48",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "PMTV",
+        "signalType": "StrongBuy",
+        "stockPrice": "25.59",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "PMTV",
+        "signalType": "Agg-Buy",
+        "stockPrice": "25.59",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "NBTX",
+        "signalType": "StrongBuy",
+        "stockPrice": "28.19",
+        "date": "2025-10-13"
+    },
+    {
+        "tickerName": "NBTX",
+        "signalType": "Agg-Buy",
+        "stockPrice": "28.19",
+        "date": "2025-10-13"
+    }
+]
