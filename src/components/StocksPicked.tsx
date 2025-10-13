@@ -1,21 +1,90 @@
-import { X, TrendingUp } from 'lucide-react';
+import { X, TrendingUp, ArrowUpDown } from 'lucide-react';
 import { PickedStock } from '../types';
+import { useState, useMemo } from 'react';
+import { supabase } from '../lib/supabase';
 
 interface StocksPickedProps {
   pickedStocks: PickedStock[];
   onRemoveStock: (stockId: string) => void;
 }
 
+type SortBy = 'date' | 'priority';
+
 export function StocksPicked({ pickedStocks, onRemoveStock }: StocksPickedProps) {
+  const [sortBy, setSortBy] = useState<SortBy>('date');
+
+  const handlePriorityChange = async (stockId: string, newPriority: 'high' | 'moderate' | 'low') => {
+    const { error } = await supabase
+      .from('picked_stocks')
+      .update({ priority: newPriority })
+      .eq('id', stockId);
+
+    if (error) {
+      console.error('Error updating priority:', error);
+    }
+  };
+
+  const sortedStocks = useMemo(() => {
+    const stocks = [...pickedStocks];
+
+    if (sortBy === 'priority') {
+      const priorityOrder = { high: 1, moderate: 2, low: 3 };
+      return stocks.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
+    } else {
+      return stocks.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    }
+  }, [pickedStocks, sortBy]);
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'high':
+        return 'bg-red-100 text-red-700 border-red-200';
+      case 'moderate':
+        return 'bg-yellow-100 text-yellow-700 border-yellow-200';
+      case 'low':
+        return 'bg-green-100 text-green-700 border-green-200';
+      default:
+        return 'bg-slate-100 text-slate-700 border-slate-200';
+    }
+  };
   return (
     <div className="space-y-4">
       <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex items-center gap-3 mb-6">
-          <TrendingUp className="w-6 h-6 text-blue-600" />
-          <h2 className="text-2xl font-bold text-slate-800">Stocks Picked</h2>
-          <span className="ml-auto px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-            {pickedStocks.length} {pickedStocks.length === 1 ? 'stock' : 'stocks'}
-          </span>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 flex-1">
+            <TrendingUp className="w-6 h-6 text-blue-600" />
+            <h2 className="text-2xl font-bold text-slate-800">Stocks Picked</h2>
+            <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+              {pickedStocks.length} {pickedStocks.length === 1 ? 'stock' : 'stocks'}
+            </span>
+          </div>
+          {pickedStocks.length > 0 && (
+            <div className="flex items-center gap-2">
+              <label htmlFor="sortBy" className="text-sm font-medium text-slate-700">
+                Sort by:
+              </label>
+              <button
+                onClick={() => setSortBy('date')}
+                className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
+                  sortBy === 'date'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                Date
+              </button>
+              <button
+                onClick={() => setSortBy('priority')}
+                className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
+                  sortBy === 'priority'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                Priority
+              </button>
+            </div>
+          )}
         </div>
 
         {pickedStocks.length === 0 ? (
@@ -28,7 +97,7 @@ export function StocksPicked({ pickedStocks, onRemoveStock }: StocksPickedProps)
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {pickedStocks.map((stock) => (
+            {sortedStocks.map((stock) => (
               <div
                 key={stock.id}
                 className="bg-slate-50 rounded-lg p-4 hover:shadow-md transition-shadow border border-slate-200 group"
@@ -57,6 +126,18 @@ export function StocksPicked({ pickedStocks, onRemoveStock }: StocksPickedProps)
                   </button>
                 </div>
                 <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-slate-600">Priority</span>
+                    <select
+                      value={stock.priority}
+                      onChange={(e) => handlePriorityChange(stock.id, e.target.value as 'high' | 'moderate' | 'low')}
+                      className={`px-2.5 py-1 text-xs font-semibold rounded-full border transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 ${getPriorityColor(stock.priority)}`}
+                    >
+                      <option value="high">High</option>
+                      <option value="moderate">Moderate</option>
+                      <option value="low">Low</option>
+                    </select>
+                  </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-slate-600">Price</span>
                     <span className="text-lg font-semibold text-slate-800">

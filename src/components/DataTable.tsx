@@ -1,5 +1,5 @@
 import { ArrowUpDown, ArrowUp, ArrowDown, ChevronLeft, ChevronRight, Star, Search, X } from 'lucide-react';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { StockData } from '../types';
 
 interface DataTableProps {
@@ -19,6 +19,7 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
   const [searchTicker, setSearchTicker] = useState('');
   const [selectedDates, setSelectedDates] = useState<string[]>([]);
   const [showDateDropdown, setShowDateDropdown] = useState(false);
+  const dateDropdownRef = useRef<HTMLDivElement>(null);
   const itemsPerPage = 20;
 
   const handleSort = (field: SortField) => {
@@ -50,6 +51,22 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
   useEffect(() => {
     setSelectedDates([]);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dateDropdownRef.current && !dateDropdownRef.current.contains(event.target as Node)) {
+        setShowDateDropdown(false);
+      }
+    };
+
+    if (showDateDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showDateDropdown]);
 
   const filteredData = useMemo(() => {
     let filtered = data;
@@ -193,7 +210,7 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
             <label className="block text-sm font-medium text-slate-700 mb-2">
               Filter by Date
             </label>
-            <div className="relative">
+            <div className="relative" ref={dateDropdownRef}>
               <button
                 type="button"
                 onClick={() => setShowDateDropdown(!showDateDropdown)}
@@ -208,8 +225,11 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
               {selectedDates.length > 0 && (
                 <button
                   type="button"
-                  onClick={handleClearDates}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 hover:bg-slate-100 rounded transition-colors"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleClearDates();
+                  }}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 hover:bg-slate-100 rounded transition-colors z-10"
                   title="Clear dates"
                 >
                   <X className="w-4 h-4 text-slate-400" />

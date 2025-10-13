@@ -21,6 +21,7 @@ export interface PickedStock {
   stock_price: string;
   date: string;
   source_file?: string;
+  priority: 'high' | 'moderate' | 'low';
   created_at: string;
 }
 
