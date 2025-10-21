@@ -312,58 +312,66 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
         </div>
 
         <div className="mt-4 pt-4 border-t border-slate-200">
-          <div className="flex flex-col sm:flex-row items-start sm:items-end gap-4">
-            <div className="flex-1 w-full">
-              <div className="flex items-center justify-between mb-2">
-                <label className="text-sm font-medium text-slate-700">
-                  Price Range: ${priceRange[0]} - ${priceRange[1]}
-                </label>
-                {(priceRange[0] !== minPrice || priceRange[1] !== maxPrice) && (
-                  <button
-                    onClick={handleResetPriceRange}
-                    className="text-xs text-blue-600 hover:text-blue-700 font-medium"
-                  >
-                    Reset
-                  </button>
-                )}
-              </div>
-              <div className="flex items-center gap-3">
-                <input
-                  type="number"
-                  value={priceRange[0]}
-                  onChange={(e) => handlePriceRangeChange(0, parseFloat(e.target.value) || minPrice)}
-                  min={minPrice}
-                  max={maxPrice}
-                  className="w-20 px-2 py-1 text-sm border border-slate-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-                <input
-                  type="range"
-                  value={priceRange[0]}
-                  onChange={(e) => handlePriceRangeChange(0, parseFloat(e.target.value))}
-                  min={minPrice}
-                  max={maxPrice}
-                  step="0.01"
-                  className="flex-1"
-                />
-                <input
-                  type="range"
-                  value={priceRange[1]}
-                  onChange={(e) => handlePriceRangeChange(1, parseFloat(e.target.value))}
-                  min={minPrice}
-                  max={maxPrice}
-                  step="0.01"
-                  className="flex-1"
-                />
-                <input
-                  type="number"
-                  value={priceRange[1]}
-                  onChange={(e) => handlePriceRangeChange(1, parseFloat(e.target.value) || maxPrice)}
-                  min={minPrice}
-                  max={maxPrice}
-                  className="w-20 px-2 py-1 text-sm border border-slate-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
+          <div className="flex items-center justify-between mb-2">
+            <label className="text-sm font-medium text-slate-700">
+              Price Range: ${priceRange[0].toFixed(2)} - ${priceRange[1].toFixed(2)}
+            </label>
+            {(priceRange[0] !== minPrice || priceRange[1] !== maxPrice) && (
+              <button
+                onClick={handleResetPriceRange}
+                className="text-xs text-blue-600 hover:text-blue-700 font-medium"
+              >
+                Reset
+              </button>
+            )}
+          </div>
+          <div className="flex items-center gap-3">
+            <input
+              type="number"
+              value={priceRange[0]}
+              onChange={(e) => handlePriceRangeChange(0, parseFloat(e.target.value) || minPrice)}
+              min={minPrice}
+              max={maxPrice}
+              step="0.01"
+              className="w-24 px-2 py-1.5 text-sm border border-slate-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+            <div className="flex-1 relative h-8 flex items-center">
+              <div className="absolute w-full h-2 bg-slate-200 rounded-full"></div>
+              <div
+                className="absolute h-2 bg-blue-500 rounded-full"
+                style={{
+                  left: `${((priceRange[0] - minPrice) / (maxPrice - minPrice)) * 100}%`,
+                  right: `${100 - ((priceRange[1] - minPrice) / (maxPrice - minPrice)) * 100}%`,
+                }}
+              ></div>
+              <input
+                type="range"
+                value={priceRange[0]}
+                onChange={(e) => handlePriceRangeChange(0, parseFloat(e.target.value))}
+                min={minPrice}
+                max={maxPrice}
+                step="0.01"
+                className="absolute w-full h-2 appearance-none bg-transparent pointer-events-auto cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-600 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-600 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:shadow [&::-moz-range-thumb]:border-0"
+              />
+              <input
+                type="range"
+                value={priceRange[1]}
+                onChange={(e) => handlePriceRangeChange(1, parseFloat(e.target.value))}
+                min={minPrice}
+                max={maxPrice}
+                step="0.01"
+                className="absolute w-full h-2 appearance-none bg-transparent pointer-events-auto cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-600 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-600 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:shadow [&::-moz-range-thumb]:border-0"
+              />
             </div>
+            <input
+              type="number"
+              value={priceRange[1]}
+              onChange={(e) => handlePriceRangeChange(1, parseFloat(e.target.value) || maxPrice)}
+              min={minPrice}
+              max={maxPrice}
+              step="0.01"
+              className="w-24 px-2 py-1.5 text-sm border border-slate-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
           </div>
         </div>
       </div>
