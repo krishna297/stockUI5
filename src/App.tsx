@@ -295,6 +295,7 @@ function App() {
             <StocksPicked
               pickedStocks={pickedStocks}
               onRemoveStock={handleRemovePickedStock}
+              onPriorityUpdate={loadPickedStocks}
             />
           )}
           {currentView === 'suggestions' && (

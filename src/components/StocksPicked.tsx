@@ -22,6 +22,8 @@ export function StocksPicked({ pickedStocks, onRemoveStock, onPriorityUpdate }: 
 
     if (error) {
       console.error('Error updating priority:', error);
+    } else if (onPriorityUpdate) {
+      onPriorityUpdate();
     }
   };
 
