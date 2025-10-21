@@ -22,6 +22,9 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
   const [selectedDates, setSelectedDates] = useState<string[]>([]);
   const [showDateDropdown, setShowDateDropdown] = useState(false);
   const dateDropdownRef = useRef<HTMLDivElement>(null);
+  const [minPrice, setMinPrice] = useState<number>(0);
+  const [maxPrice, setMaxPrice] = useState<number>(0);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 0]);
   const itemsPerPage = 20;
 
   const handleSort = (field: SortField) => {
@@ -49,6 +52,21 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
     const dates = new Set(data.map((item) => item.date));
     return Array.from(dates).sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
   }, [data]);
+
+  const priceMinMax = useMemo(() => {
+    if (data.length === 0) return { min: 0, max: 0 };
+    const prices = data.map((item) => parseFloat(item.stockPrice));
+    return {
+      min: Math.floor(Math.min(...prices)),
+      max: Math.ceil(Math.max(...prices)),
+    };
+  }, [data]);
+
+  useEffect(() => {
+    setMinPrice(priceMinMax.min);
+    setMaxPrice(priceMinMax.max);
+    setPriceRange([priceMinMax.min, priceMinMax.max]);
+  }, [priceMinMax]);
 
   useEffect(() => {
     setSelectedDates([]);
@@ -85,6 +103,13 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
 
     if (selectedDates.length > 0) {
       filtered = filtered.filter((item) => selectedDates.includes(item.date));
+    }
+
+    if (priceRange[0] > minPrice || priceRange[1] < maxPrice) {
+      filtered = filtered.filter((item) => {
+        const price = parseFloat(item.stockPrice);
+        return price >= priceRange[0] && price <= priceRange[1];
+      });
     }
 
     return filtered;
@@ -134,7 +159,7 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
 
   useMemo(() => {
     setCurrentPage(1);
-  }, [selectedSignalType, sortField, sortDirection, searchTicker, selectedDates]);
+  }, [selectedSignalType, sortField, sortDirection, searchTicker, selectedDates, priceRange]);
 
   const getSortIcon = (field: SortField) => {
     if (sortField !== field) {
@@ -171,12 +196,27 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
     setSelectedDates([]);
   };
 
+  const handlePriceRangeChange = (index: number, value: number) => {
+    const newRange: [number, number] = [...priceRange] as [number, number];
+    newRange[index] = value;
+    if (index === 0 && value <= priceRange[1]) {
+      setPriceRange(newRange);
+    } else if (index === 1 && value >= priceRange[0]) {
+      setPriceRange(newRange);
+    }
+  };
+
+  const handleResetPriceRange = () => {
+    setPriceRange([minPrice, maxPrice]);
+  };
+
   useEffect(() => {
     if (onRefresh) {
       setSortField(null);
       setSortDirection(null);
       setSearchTicker('');
       setSelectedDates([]);
+      setPriceRange([minPrice, maxPrice]);
       setCurrentPage(1);
     }
   }, [data]);
@@ -269,6 +309,62 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
               </div>
             </div>
           )}
+        </div>
+
+        <div className="mt-4 pt-4 border-t border-slate-200">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end gap-4">
+            <div className="flex-1 w-full">
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-sm font-medium text-slate-700">
+                  Price Range: ${priceRange[0]} - ${priceRange[1]}
+                </label>
+                {(priceRange[0] !== minPrice || priceRange[1] !== maxPrice) && (
+                  <button
+                    onClick={handleResetPriceRange}
+                    className="text-xs text-blue-600 hover:text-blue-700 font-medium"
+                  >
+                    Reset
+                  </button>
+                )}
+              </div>
+              <div className="flex items-center gap-3">
+                <input
+                  type="number"
+                  value={priceRange[0]}
+                  onChange={(e) => handlePriceRangeChange(0, parseFloat(e.target.value) || minPrice)}
+                  min={minPrice}
+                  max={maxPrice}
+                  className="w-20 px-2 py-1 text-sm border border-slate-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+                <input
+                  type="range"
+                  value={priceRange[0]}
+                  onChange={(e) => handlePriceRangeChange(0, parseFloat(e.target.value))}
+                  min={minPrice}
+                  max={maxPrice}
+                  step="0.01"
+                  className="flex-1"
+                />
+                <input
+                  type="range"
+                  value={priceRange[1]}
+                  onChange={(e) => handlePriceRangeChange(1, parseFloat(e.target.value))}
+                  min={minPrice}
+                  max={maxPrice}
+                  step="0.01"
+                  className="flex-1"
+                />
+                <input
+                  type="number"
+                  value={priceRange[1]}
+                  onChange={(e) => handlePriceRangeChange(1, parseFloat(e.target.value) || maxPrice)}
+                  min={minPrice}
+                  max={maxPrice}
+                  className="w-20 px-2 py-1 text-sm border border-slate-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
