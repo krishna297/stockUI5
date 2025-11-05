@@ -198,11 +198,16 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
 
   const handlePriceRangeChange = (index: number, value: number) => {
     const newRange: [number, number] = [...priceRange] as [number, number];
-    newRange[index] = value;
-    if (index === 0 && value <= priceRange[1]) {
-      setPriceRange(newRange);
-    } else if (index === 1 && value >= priceRange[0]) {
-      setPriceRange(newRange);
+    newRange[index] = Math.max(minPrice, Math.min(value, maxPrice));
+
+    if (index === 0) {
+      if (newRange[0] <= newRange[1]) {
+        setPriceRange(newRange);
+      }
+    } else {
+      if (newRange[1] >= newRange[0]) {
+        setPriceRange(newRange);
+      }
     }
   };
 
@@ -325,7 +330,27 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
               </button>
             )}
           </div>
-          <div className="flex items-center gap-2">
+          <div className="space-y-3">
+            <div className="flex items-center gap-3">
+              <input
+                type="number"
+                value={priceRange[0]}
+                onChange={(e) => handlePriceRangeChange(0, parseFloat(e.target.value) || 0)}
+                step="0.01"
+                className="w-24 px-2 py-1.5 text-sm border border-slate-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Min"
+              />
+              <span className="text-slate-400">to</span>
+              <input
+                type="number"
+                value={priceRange[1]}
+                onChange={(e) => handlePriceRangeChange(1, parseFloat(e.target.value) || 0)}
+                step="0.01"
+                className="w-24 px-2 py-1.5 text-sm border border-slate-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Max"
+              />
+            </div>
+            <div className="flex items-center gap-2">
             <span className="text-xs text-slate-600 w-10">${minPrice}</span>
             <div className="flex-1 relative h-8 flex items-center">
               <div className="absolute w-full h-2 bg-slate-200 rounded-full"></div>
@@ -341,7 +366,7 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
                 value={priceRange[0]}
                 onChange={(e) => handlePriceRangeChange(0, parseFloat(e.target.value))}
                 min={minPrice}
-                max={priceRange[1]}
+                max={maxPrice}
                 step="0.01"
                 className="absolute w-full h-2 appearance-none bg-transparent pointer-events-auto cursor-pointer z-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-600 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-md [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-600 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:shadow-md [&::-moz-range-thumb]:border-0"
               />
@@ -349,13 +374,14 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
                 type="range"
                 value={priceRange[1]}
                 onChange={(e) => handlePriceRangeChange(1, parseFloat(e.target.value))}
-                min={priceRange[0]}
+                min={minPrice}
                 max={maxPrice}
                 step="0.01"
                 className="absolute w-full h-2 appearance-none bg-transparent pointer-events-auto cursor-pointer z-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-600 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-md [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-600 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:shadow-md [&::-moz-range-thumb]:border-0"
               />
             </div>
             <span className="text-xs text-slate-600 w-10 text-right">${maxPrice}</span>
+            </div>
           </div>
         </div>
       </div>
