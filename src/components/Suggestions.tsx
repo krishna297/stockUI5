@@ -25,11 +25,16 @@ export function Suggestions() {
       })
       .on('postgres_changes', { event: '*', schema: 'public', table: 'suggestion_replies' }, () => {
         loadSuggestions();
-      })
-      .subscribe();
+      });
+
+    channel.subscribe((status) => {
+      if (status === 'SUBSCRIBED') {
+        console.log('Subscribed to suggestions changes');
+      }
+    });
 
     return () => {
-      supabase.removeChannel(channel);
+      channel.unsubscribe();
     };
   }, []);
 

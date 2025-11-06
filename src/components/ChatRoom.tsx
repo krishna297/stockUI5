@@ -27,11 +27,16 @@ export function ChatRoom() {
         .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages' }, (payload) => {
           setMessages((prev) => [...prev, payload.new as ChatMessage]);
           scrollToBottom();
-        })
-        .subscribe();
+        });
+
+      channel.subscribe((status) => {
+        if (status === 'SUBSCRIBED') {
+          console.log('Subscribed to chat messages');
+        }
+      });
 
       return () => {
-        supabase.removeChannel(channel);
+        channel.unsubscribe();
       };
     }
   }, [isOpen]);
