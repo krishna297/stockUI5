@@ -1,6 +1,6 @@
 import { X, TrendingUp, ArrowUpDown } from 'lucide-react';
 import { PickedStock } from '../types';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 
 interface StocksPickedProps {
@@ -13,6 +13,36 @@ type SortBy = 'date' | 'priority';
 
 export function StocksPicked({ pickedStocks, onRemoveStock, onPriorityUpdate }: StocksPickedProps) {
   const [sortBy, setSortBy] = useState<SortBy>('date');
+  const [localStocks, setLocalStocks] = useState<PickedStock[]>(pickedStocks);
+
+  useEffect(() => {
+    setLocalStocks(pickedStocks);
+  }, [pickedStocks]);
+
+  useEffect(() => {
+    const channel = supabase
+      .channel('picked_stocks_changes')
+      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'picked_stocks' }, (payload) => {
+        setLocalStocks((prev) =>
+          prev.map((stock) =>
+            stock.id === payload.new.id ? { ...stock, ...payload.new } : stock
+          )
+        );
+      })
+      .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'picked_stocks' }, (payload) => {
+        setLocalStocks((prev) => prev.filter((stock) => stock.id !== payload.old.id));
+      });
+
+    channel.subscribe((status) => {
+      if (status === 'SUBSCRIBED') {
+        console.log('Subscribed to picked_stocks changes');
+      }
+    });
+
+    return () => {
+      channel.unsubscribe();
+    };
+  }, []);
 
   const handlePriorityChange = async (stockId: string, newPriority: 'high' | 'moderate' | 'low') => {
     const { error } = await supabase
@@ -28,7 +58,7 @@ export function StocksPicked({ pickedStocks, onRemoveStock, onPriorityUpdate }: 
   };
 
   const sortedStocks = useMemo(() => {
-    const stocks = [...pickedStocks];
+    const stocks = [...localStocks];
 
     if (sortBy === 'priority') {
       const priorityOrder = { high: 1, moderate: 2, low: 3 };
@@ -36,7 +66,7 @@ export function StocksPicked({ pickedStocks, onRemoveStock, onPriorityUpdate }: 
     } else {
       return stocks.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
     }
-  }, [pickedStocks, sortBy]);
+  }, [localStocks, sortBy]);
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
@@ -58,10 +88,10 @@ export function StocksPicked({ pickedStocks, onRemoveStock, onPriorityUpdate }: 
             <TrendingUp className="w-6 h-6 text-blue-600" />
             <h2 className="text-2xl font-bold text-slate-800">Stocks Picked</h2>
             <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-              {pickedStocks.length} {pickedStocks.length === 1 ? 'stock' : 'stocks'}
+              {localStocks.length} {localStocks.length === 1 ? 'stock' : 'stocks'}
             </span>
           </div>
-          {pickedStocks.length > 0 && (
+          {localStocks.length > 0 && (
             <div className="flex items-center gap-2">
               <label htmlFor="sortBy" className="text-sm font-medium text-slate-700">
                 Sort by:
@@ -90,7 +120,7 @@ export function StocksPicked({ pickedStocks, onRemoveStock, onPriorityUpdate }: 
           )}
         </div>
 
-        {pickedStocks.length === 0 ? (
+        {localStocks.length === 0 ? (
           <div className="text-center py-16">
             <TrendingUp className="w-16 h-16 text-slate-300 mx-auto mb-4" />
             <p className="text-slate-500 text-lg">No stocks picked yet</p>
