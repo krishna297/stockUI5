@@ -59,12 +59,32 @@ export function Suggestions() {
       return;
     }
 
-    const suggestionsWithReplies = suggestionsData.map((suggestion) => ({
+    const suggestionsWithReplies = (suggestionsData || []).map((suggestion) => ({
       ...suggestion,
-      replies: repliesData.filter((reply) => reply.suggestion_id === suggestion.id),
+      replies: (repliesData || []).filter((reply) => reply.suggestion_id === suggestion.id),
     }));
 
     setSuggestions(suggestionsWithReplies);
+  };
+
+  const addSuggestionLocally = (newSuggestion: any) => {
+    setSuggestions((prev) => [
+      { ...newSuggestion, replies: [] },
+      ...prev,
+    ]);
+  };
+
+  const addReplyLocally = (suggestionId: string, newReply: any) => {
+    setSuggestions((prev) =>
+      prev.map((suggestion) =>
+        suggestion.id === suggestionId
+          ? {
+              ...suggestion,
+              replies: [...(suggestion.replies || []), newReply],
+            }
+          : suggestion
+      )
+    );
   };
 
   const handleAddSuggestion = async (e: React.FormEvent) => {
@@ -74,16 +94,19 @@ export function Suggestions() {
     setLoading(true);
     localStorage.setItem('userName', userName);
 
-    const { error } = await supabase.from('suggestions').insert([
+    const { data, error } = await supabase.from('suggestions').insert([
       {
         user_name: userName,
         content: newSuggestion,
       },
-    ]);
+    ]).select();
 
     if (error) {
       console.error('Error adding suggestion:', error);
     } else {
+      if (data && data[0]) {
+        addSuggestionLocally(data[0]);
+      }
       setNewSuggestion('');
     }
     setLoading(false);
@@ -96,17 +119,20 @@ export function Suggestions() {
     setLoading(true);
     localStorage.setItem('userName', userName);
 
-    const { error } = await supabase.from('suggestion_replies').insert([
+    const { data, error } = await supabase.from('suggestion_replies').insert([
       {
         suggestion_id: suggestionId,
         user_name: userName,
         content: content,
       },
-    ]);
+    ]).select();
 
     if (error) {
       console.error('Error adding reply:', error);
     } else {
+      if (data && data[0]) {
+        addReplyLocally(suggestionId, data[0]);
+      }
       setReplyContent({ ...replyContent, [suggestionId]: '' });
     }
     setLoading(false);

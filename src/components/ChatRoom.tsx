@@ -27,6 +27,9 @@ export function ChatRoom() {
         .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages' }, (payload) => {
           setMessages((prev) => [...prev, payload.new as ChatMessage]);
           scrollToBottom();
+        })
+        .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'chat_messages' }, (payload) => {
+          setMessages((prev) => prev.filter((msg) => msg.id !== payload.old.id));
         });
 
       channel.subscribe((status) => {
@@ -71,18 +74,20 @@ export function ChatRoom() {
     setLoading(true);
     localStorage.setItem('userName', userName);
 
-    const { error } = await supabase.from('chat_messages').insert([
+    const { data, error } = await supabase.from('chat_messages').insert([
       {
         user_name: userName,
         message: newMessage,
       },
-    ]);
+    ]).select();
 
     if (error) {
       console.error('Error sending message:', error);
     } else {
       setNewMessage('');
-      await loadMessages();
+      if (data && data[0]) {
+        setMessages((prev) => [...prev, data[0]]);
+      }
     }
     setLoading(false);
   };
@@ -96,7 +101,7 @@ export function ChatRoom() {
     const { error } = await supabase
       .from('chat_messages')
       .delete()
-      .gte('created_at', '1970-01-01');
+      .neq('id', '00000000-0000-0000-0000-000000000000');
 
     if (error) {
       console.error('Error deleting chat history:', error);

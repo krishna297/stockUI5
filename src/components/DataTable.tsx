@@ -197,20 +197,15 @@ export function DataTable({ data, selectedSignalType, onSignalTypeChange, onTogg
   };
 
   const handlePriceRangeChange = (index: number, value: number) => {
-    const clampedValue = Math.max(minPrice, Math.min(value, maxPrice));
+    const numValue = parseFloat(value.toString());
     const newRange: [number, number] = [...priceRange] as [number, number];
 
     if (index === 0) {
-      if (clampedValue <= priceRange[1]) {
-        newRange[0] = clampedValue;
-        setPriceRange(newRange);
-      }
+      newRange[0] = Math.max(minPrice, Math.min(numValue, newRange[1]));
     } else {
-      if (clampedValue >= priceRange[0]) {
-        newRange[1] = clampedValue;
-        setPriceRange(newRange);
-      }
+      newRange[1] = Math.min(maxPrice, Math.max(numValue, newRange[0]));
     }
+    setPriceRange(newRange);
   };
 
   const handleResetPriceRange = () => {
